@@ -1,6 +1,0 @@
-# checks if url has already been checked
-def check(String url):
-    contents = file.read();
-    if (url in contents) return true;
-    else return false;
-    
