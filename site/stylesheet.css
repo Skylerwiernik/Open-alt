@@ -21,4 +21,6 @@
   background-color: #4CAF50;
   color: white;
 }
-
+body {
+    font-size: 18px;
+}
