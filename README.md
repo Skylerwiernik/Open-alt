@@ -1,2 +1,2 @@
 # Open-alt
-Open source, crow sourced, alt text finder.
+Open source, crowd sourced, alt text finder.
