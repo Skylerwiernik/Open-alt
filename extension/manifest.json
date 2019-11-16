@@ -1,0 +1,37 @@
+{
+	"manifest_version": 2,
+	"version": "1.0",
+	"name": "Open Alt Plugin",
+	"short_name": "Open Alt",
+	"description": "This extension gathers images missing alt text for the Open Alt project.",
+	"permissions": ["<all_urls>", "tabs", "storage", "unlimitedStorage", "downloads"],
+	"icons": {
+		"512": "/icons/logo.png"
+	},
+	"browser_action": {
+		"default_icon": {
+			"512": "/icons/logo.png"
+		},
+		"default_title": "Open Alt",
+		"default_popup": "popup.html"
+	},
+	"options_page": "options.html",
+	"devtools_page": "devtoolspage.html",
+	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+	"background": {
+		"scripts": [
+            "scripts/scraper.js"
+		]
+	},
+	"web_accessible_resources": [
+		"/icons/logo.png"
+	],
+	"content_scripts": [
+		{
+			"matches": ["*://*/*"],
+			"js": [
+                "scripts/scraper.js"
+			]
+		}
+	]
+}
