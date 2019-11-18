@@ -22,23 +22,23 @@ class MyHandler(http.server.BaseHTTPRequestHandler):
 
         if "request-type: checkURL" in self.headers:
             self.wfile.write(str(self.check(self.path[1:])).encode())
-            
+
     def do_POST(self):
         self.send_response(200)
         self.send_header("Content-type", "text/plain")
         self.end_headers()
 
-        
+
         if "request-type: sendURL" in self.headers:
             self.add_needed_url(self.path[1:])
-            
 
-                
-            
+
+
+
 
 
 HOST_NAME = '0.0.0.0'
-PORT_NUMBER = 80
+PORT_NUMBER = 4444
 
 server_class = http.server.HTTPServer
 httpd = server_class((HOST_NAME, PORT_NUMBER), MyHandler)
@@ -49,6 +49,3 @@ except KeyboardInterrupt:
     pass
 httpd.server_close()
 print(time.asctime(), "Server Stops - %s:%s" % (HOST_NAME, PORT_NUMBER))
-
-
-

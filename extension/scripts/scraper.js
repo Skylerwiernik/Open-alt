@@ -12,6 +12,10 @@ else if (scrapeStatus == "1") {
     }
 }
 
+console.log("!!!");
+console.log(getImages());
+console.log("!!!");
+
 function checkURL() {
     // TODO: Add real api url here
     const url = "exapmle.com/api/checkurl"
@@ -46,24 +50,32 @@ function getImages() {
     // Ccontent seperated by html tags
     const tags = webpage.split("<");
 
-    var index;
-    var urls;
+    var index = [];
+    var urls  = [];
     //Fills index with the locations of tags which need alt text
     for (var i = 0; i < tags.length; i++) {
-        if (!tags[i].includes("alt") && tags[i].includes("img")) {
-            index.append(i);
+        if (!tags[i].includes("alt") || !tags[i].includes('alt=""') && tags[i].includes("img")) {
+            index.push(i);
         }
     }
     // Gets the url of the image from the tag
     for (var i = 0; i < index.length; i++) {
-        var thisTag = tags[index[i]];
-        thisTag = thisTag.split('scr="')[1];
-        thisTag = thisTag.split('"')[0];
-        // If the url does not include the full site adress, add it.
-        if (thisTag[1] == '/') {
-            thisTag = tab + thisTag;
+        try {
+            console.log("!");
+            var thisTag = tags[index[i]];
+            console.log(thisTag);
+            thisTag = thisTag.split('scr="')[1];
+            console.log(thisTag);
+            thisTag = thisTag.split('"')[0];
+            console.log(thisTag);
+            // If the url does not include the full site adress, add it.
+            if (thisTag[1] == '/') {
+                thisTag = tab + thisTag;
+            }
+            urls.push(thisTag);
+        } catch (e) {
+            continue;
         }
-        urls.append(thisTag);
     }
     return urls;
 }
